@@ -1,0 +1,6 @@
+・venvの立ち上げ
+source venv/bin/activate
+・API通信の立ち上げ
+uvicorn main:app --reload
+・Reactの立ち上げ
+npm start
