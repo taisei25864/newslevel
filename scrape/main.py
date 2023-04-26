@@ -1,5 +1,8 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+import requests
+from bs4 import BeautifulSoup
+
 
 app = FastAPI()
 
@@ -12,9 +15,22 @@ app.add_middleware(
     allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
-    allow_headers=["*"],
+    allow_headers=["*"]
 )
 
 @app.get("/")
 def Hello():
-    return {"Hello":"World!"}
+    url = 'https://news.yahoo.co.jp/topics/top-picks'
+    res = requests.get(url)
+    soup = BeautifulSoup(res.content, "html.parser")
+
+    topic = soup.find_all(class_ = "newsFeed_item_title")
+    link = soup.find_all(class_ = "newsFeed_item_link")
+    
+    elementjson = []
+    for (element, link) in zip(topic, link):
+        new_data = {"title": element.text, "a": link["href"]}
+        elementjson.append(new_data)
+        
+
+    return elementjson
