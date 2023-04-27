@@ -9,6 +9,16 @@ function App() {
 	const [data, setData] = React.useState<Data[]>();
 	const url = "http://127.0.0.1:8000";
 
+	const GetContent = (index: number) => {
+		if(data) {
+			const url: string = data[index].a
+			window.location.href = url
+		}
+		else {
+			console.log("データが取れていません")
+		}
+	}
+
 	const GetData = () => {
 		axios.get(url).then((res) => {
 			setData(res.data);
@@ -20,11 +30,13 @@ function App() {
 			<div>ここに処理を書いていきます</div>
 			{data ? 
 			<div>
-				{data.map((value: Data) => {
+				{data.map((value: Data, index: number) => {
 					return (
 						<>
-							<div>{value.title}</div>
-							<div>{value.a}</div>
+							<div>
+								<div onClick={() => GetContent(index)}>{value.title}</div>
+								<div>{value.a}</div>
+							</div>
 						</>
 					)
 				})}
