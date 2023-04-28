@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import 'tailwindcss/tailwind.css'
 
 function App() {
 	type Data = {
@@ -27,21 +28,39 @@ function App() {
 
 	return (
 		<div>
-			<div>ここに処理を書いていきます</div>
 			{data ? 
 			<div>
 				{data.map((value: Data, index: number) => {
 					return (
 						<>
-							<div>
+							<div className="
+								container
+								border
+								border-black-200
+								hover:bg-orange-400
+								px-4
+								py-2
+								rounded-lg
+								shadow-lg
+								cursor-pointer
+							">
 								<div onClick={() => GetContent(index)}>{value.title}</div>
-								<div>{value.a}</div>
 							</div>
 						</>
 					)
 				})}
 			</div>
-			: <button onClick={GetData}>データを取得</button>}
+			: <div className="text-center">
+				<button onClick={GetData} className="
+				bg-blue-800 
+				hover:bg-blue-700 
+				text-white 
+				rounded 
+				px-4 
+				py-2
+				">データを取得
+				</button>
+			</div>}
 		</div>
 	);
 }

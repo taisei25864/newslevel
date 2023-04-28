@@ -19,7 +19,7 @@ app.add_middleware(
 )
 
 @app.get("/")
-def Hello():
+def root():
     url = 'https://news.yahoo.co.jp/topics/top-picks'
     res = requests.get(url)
     soup = BeautifulSoup(res.content, "html.parser")
@@ -32,5 +32,4 @@ def Hello():
         new_data = {"title": element.text, "a": link["href"]}
         elementjson.append(new_data)
         
-
     return elementjson
