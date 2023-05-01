@@ -1,16 +1,20 @@
 import React from "react";
 import axios from "axios";
 import 'tailwindcss/tailwind.css'
+import Data from "./component/Data"
+import Button from "./component/Button"
+import { useState } from 'react'
 
 function App() {
-	type Data = {
+	interface DataInfo {
 		"title": string,
 		"a": string
 	}
-	const [data, setData] = React.useState<Data[]>();
+	
+	const [data, setData] = useState<DataInfo[] | undefined>();
 	const url = "http://127.0.0.1:8000";
 
-	const GetContent = (index: number) => {
+	function GetContent(index: number): void {
 		if(data) {
 			const url: string = data[index].a
 			window.location.href = url
@@ -20,49 +24,28 @@ function App() {
 		}
 	}
 
-	const GetData = () => {
+	function GetData(): void {
 		axios.get(url).then((res) => {
 			setData(res.data);
+			console.log("正しく動作しています")
 		});
 	};
 
 	return (
-		<div>
-			{data ? 
-			<div>
-				{data.map((value: Data, index: number) => {
-					return (
-						<>
-							<div className="
-								container
-								border
-								border-black-200
-								hover:bg-orange-400
-								px-4
-								py-2
-								rounded-lg
-								shadow-lg
-								cursor-pointer
-							">
-								<div onClick={() => GetContent(index)}>{value.title}</div>
-							</div>
-						</>
-					)
-				})}
+		<div className="flex flex-row">
+			<div className="w-1/2">
+				<Data 			
+					GetContent={GetContent}
+					data={data}
+				/>
 			</div>
-			: <div className="text-center">
-				<button onClick={GetData} className="
-				bg-blue-800 
-				hover:bg-blue-700 
-				text-white 
-				rounded 
-				px-4 
-				py-2
-				">データを取得
-				</button>
-			</div>}
+			<div className="w-1/2">
+				<Button 
+					GetData={GetData}
+				/>
+			</div>
 		</div>
-	);
+	)
 }
 
 export default App;
