@@ -18,6 +18,8 @@ app.add_middleware(
     allow_headers=["*"]
 )
 
+elementjson = []
+
 @app.get("/")
 def root():
     url = 'https://news.yahoo.co.jp/topics/top-picks'
@@ -27,9 +29,9 @@ def root():
     topic = soup.find_all(class_ = "newsFeed_item_title")
     link = soup.find_all(class_ = "newsFeed_item_link")
     
-    elementjson = []
     for (element, link) in zip(topic, link):
         new_data = {"title": element.text, "a": link["href"]}
         elementjson.append(new_data)
         
     return elementjson
+
