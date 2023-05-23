@@ -26,9 +26,10 @@ for urlinfo in elementjson:
     data = soup.find_all("p", class_="sc-liIFw hfDeSd highLightSearchTarget")
     data[0] = str(data[0]).replace('<p class="sc-liIFw hfDeSd highLightSearchTarget">', "")
     data[0] = str(data[0]).replace('</p>', "")
+    ans.append(data[0])
 
     #数値化して表示
-    for d in ans:
-        kanjivallist = re.findall("[一-龥]", d)
-        ans1 = len(kanjivallist) / len(d)
-        print(ans1)
+for d in ans:
+    kanjivallist = re.findall("[一-龥]", d)
+    ans1 = len(kanjivallist) / len(d)
+    print(ans1)
