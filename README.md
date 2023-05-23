@@ -45,3 +45,12 @@ You can learn more in the [Create React App documentation](https://facebook.gith
 
 To learn React, check out the [React documentation](https://reactjs.org/).
 # newslevel
+
+##　このwebアプリの使い方
+・venvの立ち上げ
+source venv/bin/activate
+・API通信の立ち上げ
+uvicorn main:app --reload
+・Reactの立ち上げ
+npm start
+
