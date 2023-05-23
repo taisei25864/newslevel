@@ -55,4 +55,4 @@ uvicorn main:app --reload
 ・Reactの立ち上げ
 npm start
 
-feature/test
+feature-test
