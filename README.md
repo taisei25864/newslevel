@@ -46,13 +46,18 @@ You can learn more in the [Create React App documentation](https://facebook.gith
 To learn React, check out the [React documentation](https://reactjs.org/).
 # newslevel
 
-# このwebアプリの使い方
+##  実行方法
 
-・venvの立ち上げ
+### venvの立ち上げ(scrapeフォルダ)
+```
 source venv/bin/activate
-・API通信の立ち上げ
+```
+### API通信の立ち上げ(scrapeフォルダ)
+```
 uvicorn main:app --reload
-・Reactの立ち上げ
+```
+### Reactの立ち上げ
+```
 npm start
+```
 
-feature-test
